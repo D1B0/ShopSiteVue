@@ -14,7 +14,7 @@
       <li>
         <details id="drops" class="header__menu">
           <summary class="header__detail__button">
-            <img for class="header__menu__img" src="./../assets/menu.svg" alt="menu" @click="dropBehind">
+            <img for class="header__menu__img" src="./../assets/menu.svg" alt="menu" @click="menuButton">
           </summary>
 
           <div class="header__detail">
@@ -130,7 +130,7 @@
 
             <div class="header__menu__left">
               <svg class="header__menu__close" width="13" height="13" viewBox="0 0 13 13"
-                   xmlns="http://www.w3.org/2000/svg">
+                   xmlns="http://www.w3.org/2000/svg" @click="dropBehind">
                 <path
                     d="M7.4158 6.00409L11.7158 1.71409C11.9041 1.52579 12.0099
                     1.27039 12.0099 1.00409C12.0099 0.73779 11.9041 0.482395
@@ -151,7 +151,7 @@
                     11.933C11.5122 11.8822 11.6228 11.8078 11.7158 11.7141C11.8095 11.6211
                     11.8839 11.5105 11.9347 11.3887C11.9855 11.2668 12.0116 11.1361 12.0116
                     11.0041C12.0116 10.8721 11.9855 10.7414 11.9347 10.6195C11.8839 10.4977
-                    11.8095 10.3871 11.7158 10.2941L7.4158 6.00409Z" @click="dropBehind"/>
+                    11.8095 10.3871 11.7158 10.2941L7.4158 6.00409Z" />
               </svg>
 
             </div>
@@ -187,7 +187,7 @@ export default {
     return {
       CartVisible: false,
       search: '',
-      showShade: true
+      showShade: false
     }
   },
   mounted() {
@@ -195,6 +195,14 @@ export default {
 
   },
   methods: {
+    menuButton(){
+      if(this.showShade === false){
+        this.showShade=true
+      }else{
+        this.showShade=false
+      }
+      this.$root.$emit('dropBehind')
+    },
     dropBehind() {
       if (this.showShade === false) {
         this.showShade = !this.showShade
